@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- FitBud Button Style -->
+    <style name="FitBudButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/fitbud_accent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:elevation">4dp</item>
+    </style>
+
+    <!-- FitBud EditText Style -->
+    <style name="FitBudEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/fitbud_text</item>
+        <item name="android:textColorHint">@color/fitbud_hint</item>
+        <item name="boxStrokeColor">@color/fitbud_accent</item>
+        <item name="boxBackgroundColor">@color/fitbud_bg_light</item>
+    </style>
+</resources>

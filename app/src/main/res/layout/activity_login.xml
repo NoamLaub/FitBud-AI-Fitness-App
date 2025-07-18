@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:gravity="center"
+        android:background="@color/fitbud_bg">
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@android:drawable/ic_menu_myplaces"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:tint="@color/fitbud_primary" />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FitBud"
+        android:textSize="32sp"
+        android:textColor="@color/fitbud_primary"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/appSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Fitness Buddy"
+        android:textSize="18sp"
+        android:textColor="@color/fitbud_hint"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif-medium" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="18sp"
+        android:textColor="#222222"
+        android:textColorHint="#888888" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="18sp"
+        android:textColor="#222222"
+        android:textColorHint="#888888" />
+
+    <TextView
+        android:id="@+id/loginErrorTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#B00020"
+        android:visibility="gone"
+        android:layout_marginTop="24dp"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-medium"
+        android:importantForAccessibility="yes" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/fitbud_button_bg"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/fitbud_button_bg"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/expertRegisterButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register as Expert"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/fitbud_button_bg"
+        android:textColor="@color/white"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="false" />
+
+</LinearLayout>
+</ScrollView>

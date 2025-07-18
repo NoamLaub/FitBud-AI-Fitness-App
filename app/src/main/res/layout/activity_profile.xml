@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/profileScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fitbud_bg"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complete Your Profile"
+            android:textSize="26sp"
+            android:textColor="@color/fitbud_primary"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First Name"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <EditText
+            android:id="@+id/surnameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Surname"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <EditText
+            android:id="@+id/ageEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Age"
+            android:inputType="number"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <Spinner
+            android:id="@+id/genderSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/currentWeightEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Current Weight (kg)"
+            android:inputType="numberDecimal"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <EditText
+            android:id="@+id/destinationWeightEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Goal Weight (kg)"
+            android:inputType="numberDecimal"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <EditText
+            android:id="@+id/allergiesEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Allergies (comma separated)"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <EditText
+            android:id="@+id/dislikedFoodsEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Disliked Foods (comma separated)"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <EditText
+            android:id="@+id/favoriteMealTimesEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Favorite Meal Times (e.g. 8:00, 13:00, 19:00)"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <EditText
+            android:id="@+id/desiredDailyCaloriesEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Desired Daily Calories"
+            android:inputType="number"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <EditText
+            android:id="@+id/desiredDailyProteinEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Desired Daily Protein (g)"
+            android:inputType="number"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <EditText
+            android:id="@+id/exerciseFrequencyEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Exercise Frequency (per week)"
+            android:inputType="number"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <EditText
+            android:id="@+id/weighInDayEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Weigh-In Day (e.g. Monday)"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18sp"
+            android:textColor="#222222"
+            android:textColorHint="#888888" />
+
+        <Button
+            android:id="@+id/saveProfileButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Profile"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/fitbud_button_bg"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-medium" />
+    </LinearLayout>
+</ScrollView>

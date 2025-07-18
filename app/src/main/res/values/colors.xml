@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- FitBud Color Palette -->
+    <color name="fitbud_primary">#2DC653</color> <!-- Vibrant green -->
+    <color name="fitbud_primary_dark">#208B3A</color>
+    <color name="fitbud_accent">#2196F3</color> <!-- Energetic blue accent -->
+    <color name="fitbud_accent_dark">#1769AA</color>
+    <color name="fitbud_bg">#F7FFF7</color> <!-- Soft background -->
+    <color name="fitbud_bg_light">#E9F9EF</color>
+    <color name="fitbud_text">#1B2A32</color> <!-- Charcoal for modern text -->
+    <color name="fitbud_hint">#8DB596</color> <!-- Muted green for hints -->
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- FitBud Main Theme -->
+    <style name="Theme.FitBud" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/fitbud_primary</item>
+        <item name="colorPrimaryVariant">@color/fitbud_primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/fitbud_accent</item>
+        <item name="colorSecondaryVariant">@color/fitbud_accent_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:windowBackground">@color/fitbud_bg</item>
+        <item name="android:textColorPrimary">@color/fitbud_text</item>
+        <item name="android:buttonStyle">@style/FitBudButton</item>
+        <item name="android:editTextStyle">@style/FitBudEditText</item>
+        <item name="android:fontFamily">sans-serif-rounded</item>
+    </style>
+</resources>
