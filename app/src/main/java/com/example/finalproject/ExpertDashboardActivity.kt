@@ -214,8 +214,10 @@ if (userIds.isEmpty()) {
     override fun onResume() {
         super.onResume()
         // Fallback: force rebalance of user assignments every time dashboard is resumed
+        android.util.Log.d("ExpertDashboard", "onResume: Triggering expert assignment rebalance")
         ExpertAssignmentUtil.rebalanceAssignments(com.google.firebase.database.FirebaseDatabase.getInstance()) {
-            android.widget.Toast.makeText(this, "Checked user assignments.", android.widget.Toast.LENGTH_SHORT).show()
+            android.util.Log.d("ExpertDashboard", "Expert assignment rebalance completed")
+            android.widget.Toast.makeText(this, "Assignment check completed - check logs for details", android.widget.Toast.LENGTH_LONG).show()
             loadAssignedUsers()
         }
     }

@@ -187,34 +187,107 @@ class MainActivity : AppCompatActivity() {
                         sendButton.isEnabled = false
                         sendButton.text = "Getting to know you..."
                         val onboardingPrompt = "Welcome the new user to the FitBud app. Use their profile info to introduce yourself as their friendly AI fitness buddy, explain how the app works (logging meals, weight, reminders, chat, editing profile), and encourage them to ask questions or get support. Be warm, clear, and motivating."
-                        val systemPrompt = buildSystemPromptFromProfile(userProfileMap ?: emptyMap<String, Any?>())
-                        OpenAIApi.askBot(
-                            onboardingPrompt,
-                            chatHistory,
-                            systemPrompt,
-                            onResult = { botReply ->
-                                runOnUiThread {
-                                    chatHistory.add(Pair("assistant", botReply))
-                                    adapter.notifyDataSetChanged()
-                                    chatListView.post {
-                                        chatListView.setSelection(chatHistory.size - 1)
-                                    }
-                                    sendButton.isEnabled = true
-                                    sendButton.text = "Send"
+                        
+                        // Set a timeout to ensure welcome message appears even if API fails
+                        var welcomeMessageShown = false
+                        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                            if (!welcomeMessageShown) {
+                                welcomeMessageShown = true
+                                android.util.Log.d("MainActivity", "Welcome message timeout - showing fallback")
+                                val fallbackMessage = "👋 Welcome to FitBud! I'm your AI fitness buddy here to help you reach your health goals. You can chat with me anytime for meal suggestions, motivation, or questions about your fitness journey. Don't forget to log your weight on your weigh-in day and check out your personalized meal reminders!"
+                                chatHistory.add(Pair("assistant", fallbackMessage))
+                                adapter.notifyDataSetChanged()
+                                chatListView.post {
+                                    chatListView.setSelection(chatHistory.size - 1)
                                 }
-                            },
-                            onError = { error ->
-                                runOnUiThread {
-                                    chatHistory.add(Pair("assistant", "👋 Welcome to FitBud! (Sorry, I couldn't generate a personalized welcome message right now.)"))
-                                    adapter.notifyDataSetChanged()
-                                    chatListView.post {
-                                        chatListView.setSelection(chatHistory.size - 1)
-                                    }
-                                    sendButton.isEnabled = true
-                                    sendButton.text = "Send"
-                                }
+                                sendButton.isEnabled = true
+                                sendButton.text = "Send"
+                                
+                                // Save the fallback welcome message to Firebase
+                                val chatRef = FirebaseDatabase.getInstance().getReference("chat_history").child(userId)
+                                val messageData = mapOf(
+                                    "role" to "assistant",
+                                    "content" to fallbackMessage,
+                                    "timestamp" to System.currentTimeMillis()
+                                )
+                                chatRef.push().setValue(messageData)
                             }
-                        )
+                        }, 5000) // 5 second timeout
+                        
+                        // Load user profile from Firebase for new users to generate personalized welcome message
+                        val userRef = FirebaseDatabase.getInstance().getReference("users").child(userId)
+                        userRef.get().addOnSuccessListener { userSnapshot ->
+                            val profileMap = userSnapshot.value as? Map<String, Any?> ?: emptyMap()
+                            val systemPrompt = buildSystemPromptFromProfile(profileMap)
+                            
+                            OpenAIApi.askBot(
+                                onboardingPrompt,
+                                chatHistory,
+                                systemPrompt,
+                                onResult = { botReply ->
+                                    runOnUiThread {
+                                        chatHistory.add(Pair("assistant", botReply))
+                                        adapter.notifyDataSetChanged()
+                                        chatListView.post {
+                                            chatListView.setSelection(chatHistory.size - 1)
+                                        }
+                                        sendButton.isEnabled = true
+                                        sendButton.text = "Send"
+                                        
+                                        // Save the welcome message to chat history in Firebase
+                                        val chatRef = FirebaseDatabase.getInstance().getReference("chat_history").child(userId)
+                                        val messageData = mapOf(
+                                            "role" to "assistant",
+                                            "content" to botReply,
+                                            "timestamp" to System.currentTimeMillis()
+                                        )
+                                        chatRef.push().setValue(messageData)
+                                    }
+                                },
+                                onError = { error ->
+                                    runOnUiThread {
+                                        val fallbackMessage = "👋 Welcome to FitBud! I'm your AI fitness buddy here to help you reach your health goals. You can chat with me anytime for meal suggestions, motivation, or questions about your fitness journey. Don't forget to log your weight on your weigh-in day and check out your personalized meal reminders!"
+                                        chatHistory.add(Pair("assistant", fallbackMessage))
+                                        adapter.notifyDataSetChanged()
+                                        chatListView.post {
+                                            chatListView.setSelection(chatHistory.size - 1)
+                                        }
+                                        sendButton.isEnabled = true
+                                        sendButton.text = "Send"
+                                        
+                                        // Save the fallback welcome message to chat history in Firebase
+                                        val chatRef = FirebaseDatabase.getInstance().getReference("chat_history").child(userId)
+                                        val messageData = mapOf(
+                                            "role" to "assistant",
+                                            "content" to fallbackMessage,
+                                            "timestamp" to System.currentTimeMillis()
+                                        )
+                                        chatRef.push().setValue(messageData)
+                                    }
+                                }
+                            )
+                        }.addOnFailureListener {
+                            // If we can't load the profile, show a generic welcome message
+                            runOnUiThread {
+                                val fallbackMessage = "👋 Welcome to FitBud! I'm your AI fitness buddy here to help you reach your health goals. You can chat with me anytime for meal suggestions, motivation, or questions about your fitness journey!"
+                                chatHistory.add(Pair("assistant", fallbackMessage))
+                                adapter.notifyDataSetChanged()
+                                chatListView.post {
+                                    chatListView.setSelection(chatHistory.size - 1)
+                                }
+                                sendButton.isEnabled = true
+                                sendButton.text = "Send"
+                                
+                                // Save the fallback welcome message to chat history in Firebase
+                                val chatRef = FirebaseDatabase.getInstance().getReference("chat_history").child(userId)
+                                val messageData = mapOf(
+                                    "role" to "assistant",
+                                    "content" to fallbackMessage,
+                                    "timestamp" to System.currentTimeMillis()
+                                )
+                                chatRef.push().setValue(messageData)
+                            }
+                        }
                     }
                     adapter.notifyDataSetChanged()
                     chatListView.setSelection(chatHistory.size - 1)

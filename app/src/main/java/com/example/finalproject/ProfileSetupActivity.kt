@@ -169,20 +169,41 @@ class ProfileSetupActivity : AppCompatActivity() {
     .addOnSuccessListener {
         Toast.makeText(this, "Profile saved!", Toast.LENGTH_SHORT).show()
 
-        // Assign users to experts immediately after profile save
-        ExpertAssignmentUtil.rebalanceAssignments(FirebaseDatabase.getInstance()) {
-            // Immediately re-schedule notifications and refresh chatbot context
-            try {
-                // Use reflection to call MainActivity's scheduleMealAndWeighInReminders
-                val mainIntent = Intent(this, MainActivity::class.java)
-                mainIntent.putExtra("refresh_reminders", true)
-                mainIntent.putExtra("user_profile_map", HashMap(userProfile))
-                startActivity(mainIntent)
-            } catch (e: Exception) {
-                // Fallback: just start MainActivity
-                startActivity(Intent(this, MainActivity::class.java))
+        // Assign users to experts with timeout fallback
+        var navigationCompleted = false
+        
+        // Set a timeout to ensure navigation happens even if expert assignment fails
+        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+            if (!navigationCompleted) {
+                navigationCompleted = true
+                Log.d("ProfileSetup", "Expert assignment timeout - proceeding to MainActivity")
+                try {
+                    val mainIntent = Intent(this, MainActivity::class.java)
+                    mainIntent.putExtra("refresh_reminders", true)
+                    mainIntent.putExtra("user_profile_map", HashMap(userProfile))
+                    startActivity(mainIntent)
+                } catch (e: Exception) {
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
+                finish()
             }
-            finish()
+        }, 3000) // 3 second timeout
+        
+        // Try expert assignment
+        ExpertAssignmentUtil.rebalanceAssignments(FirebaseDatabase.getInstance()) {
+            if (!navigationCompleted) {
+                navigationCompleted = true
+                Log.d("ProfileSetup", "Expert assignment completed - proceeding to MainActivity")
+                try {
+                    val mainIntent = Intent(this, MainActivity::class.java)
+                    mainIntent.putExtra("refresh_reminders", true)
+                    mainIntent.putExtra("user_profile_map", HashMap(userProfile))
+                    startActivity(mainIntent)
+                } catch (e: Exception) {
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
+                finish()
+            }
         }
     }
     .addOnFailureListener { e ->

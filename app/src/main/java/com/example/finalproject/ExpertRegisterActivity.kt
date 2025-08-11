@@ -60,10 +60,29 @@ class ExpertRegisterActivity : AppCompatActivity() {
                         FirebaseDatabase.getInstance().getReference("experts").child(expertId).setValue(sanitizedExpertProfile)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "Expert registered successfully!", Toast.LENGTH_SHORT).show()
-                                // Rebalance all user assignments
+                                
+                                // Add timeout mechanism for navigation
+                                var navigationCompleted = false
+                                
+                                // Set timeout to ensure navigation happens even if assignment fails
+                                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                                    if (!navigationCompleted) {
+                                        navigationCompleted = true
+                                        android.util.Log.d("ExpertRegister", "Assignment timeout - proceeding to dashboard")
+                                        startActivity(Intent(this, ExpertDashboardActivity::class.java))
+                                        finish()
+                                    }
+                                }, 5000) // 5 second timeout
+                                
+                                // Try expert assignment
+                                android.util.Log.d("ExpertRegister", "Starting expert assignment rebalance")
                                 ExpertAssignmentUtil.rebalanceAssignments(FirebaseDatabase.getInstance()) {
-                                    startActivity(Intent(this, ExpertDashboardActivity::class.java))
-                                    finish()
+                                    if (!navigationCompleted) {
+                                        navigationCompleted = true
+                                        android.util.Log.d("ExpertRegister", "Assignment completed - proceeding to dashboard")
+                                        startActivity(Intent(this, ExpertDashboardActivity::class.java))
+                                        finish()
+                                    }
                                 }
                             }
                             .addOnFailureListener { e ->

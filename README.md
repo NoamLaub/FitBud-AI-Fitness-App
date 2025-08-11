@@ -12,6 +12,43 @@
 
 **FitBud** is your intelligent fitness companion that combines the power of AI with personalized health tracking. Built with cutting-edge technology, FitBud provides personalized meal suggestions, weight tracking, expert guidance, and motivational support to help you achieve your fitness goals.
 
+## 📸 App Screenshots
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="screenshots/login_screen.png" width="200" alt="Login Screen"/>
+        <br/>
+        <sub><b>🔐 Secure Login</b></sub>
+        <br/>
+        <sub>Clean authentication with user/expert options</sub>
+      </td>
+      <td align="center">
+        <img src="screenshots/profile_setup.png" width="200" alt="Profile Setup"/>
+        <br/>
+        <sub><b>👤 Profile Setup</b></sub>
+        <br/>
+        <sub>Comprehensive user onboarding</sub>
+      </td>
+      <td align="center">
+        <img src="screenshots/ai_chat.png" width="200" alt="AI Chat Interface"/>
+        <br/>
+        <sub><b>🤖 AI Chat</b></sub>
+        <br/>
+        <sub>Intelligent meal recommendations</sub>
+      </td>
+      <td align="center">
+        <img src="screenshots/expert_dashboard.png" width="200" alt="Expert Dashboard"/>
+        <br/>
+        <sub><b>👨‍⚕️ Expert Dashboard</b></sub>
+        <br/>
+        <sub>Professional user management</sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ### 🌟 Key Features
 
 - **🤖 AI-Powered Chatbot**: Intelligent conversations powered by OpenAI GPT-3.5 Turbo
