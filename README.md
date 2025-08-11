@@ -1,6 +1,12 @@
 # 🏋️‍♂️ FitBud - AI Fitness Companion
 
-
+<div align="center">
+  <img src="https://img.shields.io/badge/Platform-Android-green.svg" alt="Platform">
+  <img src="https://img.shields.io/badge/Language-Kotlin-blue.svg" alt="Language">
+  <img src="https://img.shields.io/badge/AI-OpenAI%20GPT--3.5-orange.svg" alt="AI">
+  <img src="https://img.shields.io/badge/Database-Firebase-yellow.svg" alt="Database">
+  <img src="https://img.shields.io/badge/License-MIT-brightgreen.svg" alt="License">
+</div>
 
 ## 📱 About FitBud
 
